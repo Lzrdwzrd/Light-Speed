@@ -16,7 +16,9 @@ public class PauseState extends GameState {
 	}
 	
 	public void init() 
-	{}
+	{
+		tick = 120*10;
+	}
 	
 	public void update() {
 		handleInput();
@@ -59,33 +61,60 @@ public class PauseState extends GameState {
 		
 		g.setFont(new Font("Calibri", Font.PLAIN, 11));
 		g.setColor(Color.CYAN);
-		if (length > 38){
-			g.drawString(fact.substring(0, 38), 5, 35);
+		if (length > 342){
+			g.drawString(fact.substring(304, 342), 5, 115);
+			
+		}
+		if (length > 304){
+			g.drawString(fact.substring(266, 304), 5, 105);
+			
+		}
+		if (length > 266){
+			g.drawString(fact.substring(228, 266), 5, 95);
+			
+		}
+		if (length > 228){
+			g.drawString(fact.substring(190, 228), 5, 85);
+			
+		}
+		if (length > 190){
+			g.drawString(fact.substring(152, 190), 5, 75);
+			
+		}
+		if (length > 152){
+			g.drawString(fact.substring(114, 152), 5, 65);
+			
+		}
+		if (length > 114){
+			g.drawString(fact.substring(76, 114), 5, 55);
+			
 		}
 		if (length > 76){
 			g.drawString(fact.substring(38, 76), 5, 45);
-		}else if (length <= 114){g.drawString(fact.substring(38, length-1), 5, 45);}
-		if (length > 114){
-			g.drawString(fact.substring(76, 114), 5, 55);
-		}else if (length <= 152){g.drawString(fact.substring(76, length-1), 5, 55);}
-		if (length > 152){
-			g.drawString(fact.substring(114, 152), 5, 65);
-		}else if (length <= 190){g.drawString(fact.substring(114, length-1), 5, 65);}
-		if (length > 190){
-			g.drawString(fact.substring(152, 190), 5, 75);
-		}else if (length <= 228){g.drawString(fact.substring(152, length-1), 5, 75);}
-		if (length > 228){
-			g.drawString(fact.substring(190, 228), 5, 85);
-		}else if (length <= 266){g.drawString(fact.substring(190, length-1), 5, 85);}
-		if (length > 266){
-			g.drawString(fact.substring(228, 266), 5, 95);
-		}else if (length <= 304){g.drawString(fact.substring(228, length-1), 5, 95);}
-		if (length > 304){
-			g.drawString(fact.substring(266, 304), 5, 105);
-		}else if (length <= 342){g.drawString(fact.substring(266, length-1), 5, 105);}
-		if (length > 342){
-			g.drawString(fact.substring(304, 342), 5, 115);
-		}else if (length <= 380){g.drawString(fact.substring(304, length-1), 5, 115);}
+			
+		}
+		if (length > 38){
+			g.drawString(fact.substring(0, 38), 5, 35);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if (length <= 76){g.drawString(fact.substring(38, length-1), 5, 45);}
+		else if (length <= 114){g.drawString(fact.substring(76, length-1), 5, 55);}
+		else if (length <= 152){g.drawString(fact.substring(114, length-1), 5, 65);}
+		else if (length <= 190){g.drawString(fact.substring(152, length-1), 5, 75);}
+		else if (length <= 228){g.drawString(fact.substring(190, length-1), 5, 85);}
+		else if (length <= 266){g.drawString(fact.substring(228, length-1), 5, 95);}
+		else if (length <= 304){g.drawString(fact.substring(266, length-1), 5, 105);}
+		else if (length <= 342){g.drawString(fact.substring(304, length-1), 5, 115);}
+		
 		
 		g.setColor(Color.RED);
 		g.drawString(""+Math.round(tick/120.0), 5, 130);
