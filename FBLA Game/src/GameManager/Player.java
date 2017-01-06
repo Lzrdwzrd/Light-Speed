@@ -48,16 +48,16 @@ public class Player
 		
 		if (direction == "up")
 		{
-			y--;
+			y-=5;
 		}else if (direction == "down")
 		{
-			y++;
+			y+=5;
 		}else if (direction == "left")
 		{
-			x--;
+			x-=5;
 		}else if (direction == "right")
 		{
-			x++;
+			x+=5;
 		}
 		
 		

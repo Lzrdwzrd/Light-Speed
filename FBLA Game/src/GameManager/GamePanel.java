@@ -8,6 +8,7 @@ package GameManager;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -20,8 +21,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	// dimensions
 	// HEIGHT is the playing area size
 	// HEIGHT2 includes the bottom window
-	public static final int WIDTH = 1024;
-	public static final int HEIGHT = 768;
+	
+	
+	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+	static final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static final int SCALE = 1;
 	
 	// game loop stuff

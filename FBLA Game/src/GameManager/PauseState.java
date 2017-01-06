@@ -36,65 +36,69 @@ public class PauseState extends GameState {
 	
 	public void draw(Graphics2D g) {
 		
+		int xSegment = GamePanel.WIDTH/16;
+		int ySegment = GamePanel.HEIGHT/16;
+		
 		g.setColor(Color.BLACK);
-		g.drawImage(PlayState.bg, 0, 0, 250, 180, null);
+		g.drawImage(PlayState.bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		
 		
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
+		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
 		g.setColor(Color.BLACK);
-		g.drawString("FACT", 51, 20);
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
+		g.drawString("FACT", (6*xSegment + xSegment/20), 2*ySegment);
+		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
 		g.setColor(Color.BLACK);
-		g.drawString("FACT", 49, 20);
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
+		g.drawString("FACT", (6*xSegment - xSegment/20), 2*ySegment);
+		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
 		g.setColor(Color.BLACK);
-		g.drawString("FACT", 50, 21);
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
+		g.drawString("FACT", 6*xSegment, (2*ySegment + ySegment/30));
+		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
 		g.setColor(Color.BLACK);
-		g.drawString("FACT", 50, 19);
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
+		g.drawString("FACT", 6*xSegment, (2*ySegment - ySegment/30));
+		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
 		g.setColor(Color.YELLOW);
-		g.drawString("FACT", 50, 20);
+		g.drawString("FACT", 6*xSegment, 2*ySegment);
 		
 		String fact = PlayState.getFact();
 		int length = fact.length();
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, 11));
+		g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/16));
 		g.setColor(Color.CYAN);
+
 		if (length > 342){
-			g.drawString(fact.substring(304, 342), 5, 115);
+			g.drawString(fact.substring(304, 342), 2*xSegment, 12*ySegment);
 			
 		}
 		if (length > 304){
-			g.drawString(fact.substring(266, 304), 5, 105);
+			g.drawString(fact.substring(266, 304), 2*xSegment, 11*ySegment);
 			
 		}
 		if (length > 266){
-			g.drawString(fact.substring(228, 266), 5, 95);
+			g.drawString(fact.substring(228, 266), 2*xSegment, 10*ySegment);
 			
 		}
 		if (length > 228){
-			g.drawString(fact.substring(190, 228), 5, 85);
+			g.drawString(fact.substring(190, 228), 2*xSegment, 9*ySegment);
 			
 		}
 		if (length > 190){
-			g.drawString(fact.substring(152, 190), 5, 75);
+			g.drawString(fact.substring(152, 190), 2*xSegment, 8*ySegment);
 			
 		}
 		if (length > 152){
-			g.drawString(fact.substring(114, 152), 5, 65);
+			g.drawString(fact.substring(114, 152), 2*xSegment, 7*ySegment);
 			
 		}
 		if (length > 114){
-			g.drawString(fact.substring(76, 114), 5, 55);
+			g.drawString(fact.substring(76, 114), 2*xSegment, 6*ySegment);
 			
 		}
 		if (length > 76){
-			g.drawString(fact.substring(38, 76), 5, 45);
+			g.drawString(fact.substring(38, 76), 2*xSegment, 5*ySegment);
 			
 		}
 		if (length > 38){
-			g.drawString(fact.substring(0, 38), 5, 35);
+			g.drawString(fact.substring(0, 38), 2*xSegment, 4*ySegment);
 		}
 		
 		
@@ -106,14 +110,14 @@ public class PauseState extends GameState {
 		
 		
 		
-		if (length <= 76){g.drawString(fact.substring(38, length-1), 5, 45);}
-		else if (length <= 114){g.drawString(fact.substring(76, length-1), 5, 55);}
-		else if (length <= 152){g.drawString(fact.substring(114, length-1), 5, 65);}
-		else if (length <= 190){g.drawString(fact.substring(152, length-1), 5, 75);}
-		else if (length <= 228){g.drawString(fact.substring(190, length-1), 5, 85);}
-		else if (length <= 266){g.drawString(fact.substring(228, length-1), 5, 95);}
-		else if (length <= 304){g.drawString(fact.substring(266, length-1), 5, 105);}
-		else if (length <= 342){g.drawString(fact.substring(304, length-1), 5, 115);}
+		if (length <= 76){g.drawString(fact.substring(38, length-1), 2*xSegment, 5*ySegment);}
+		else if (length <= 114){g.drawString(fact.substring(76, length-1), 2*xSegment, 6*ySegment);}
+		else if (length <= 152){g.drawString(fact.substring(114, length-1), 2*xSegment, 7*ySegment);}
+		else if (length <= 190){g.drawString(fact.substring(152, length-1), 2*xSegment, 8*ySegment);}
+		else if (length <= 228){g.drawString(fact.substring(190, length-1), 2*xSegment, 9*ySegment);}
+		else if (length <= 266){g.drawString(fact.substring(228, length-1), 2*xSegment, 10*ySegment);}
+		else if (length <= 304){g.drawString(fact.substring(266, length-1), 2*xSegment, 11*ySegment);}
+		else if (length <= 342){g.drawString(fact.substring(304, length-1), 2*xSegment, 12*ySegment);}
 		
 		
 		g.setColor(Color.RED);

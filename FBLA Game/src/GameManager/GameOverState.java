@@ -32,23 +32,26 @@ public class GameOverState extends GameState {
 	
 	public void draw(Graphics2D g) {
 		
+		int xSegment = GamePanel.WIDTH/16;
+		int ySegment = GamePanel.HEIGHT/16;
+		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		g.setColor(Color.YELLOW);
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
-		g.drawString("Game Over", 21, 30);
-		g.drawString("Game Over", 19, 30);
-		g.drawString("Game Over", 20, 31);
-		g.drawString("Game Over", 20, 29);
+		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
+		g.drawString("Game Over", (3*xSegment + xSegment/20), 2*ySegment);
+		g.drawString("Game Over", (3*xSegment - xSegment/20), 2*ySegment);
+		g.drawString("Game Over", 3*xSegment, (2*ySegment + ySegment/30));
+		g.drawString("Game Over", 3*xSegment, (2*ySegment - ySegment/30));
 		g.setColor(Color.RED);
-		g.drawString("Game Over", 20, 30);
+		g.drawString("Game Over", 3*xSegment, 2*ySegment);
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, 13));
-		g.drawString("Highest level reached: " + PlayState.getLevel(), 15, 60);
+		g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/10));
+		g.drawString("Highest level reached: " + PlayState.getLevel(), 2*xSegment, 5*ySegment);
 		
 		g.setColor(Color.YELLOW);
-		g.setFont(new Font("Calibri", Font.PLAIN, 13));
-		g.drawString("Press f1 to return to the menu.", 13, 80);
+		g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/12));
+		g.drawString("Press f1 to return to the menu.", 2*xSegment, 7*ySegment);
 		
 		
 		

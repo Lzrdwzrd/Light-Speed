@@ -69,11 +69,11 @@ private Player p;
 		p = new Player(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		
 		obstacles = new ArrayList<Rectangle>();
-		noObstacles = new Rectangle((GamePanel.WIDTH/2-15)*5, (GamePanel.HEIGHT/2-100)*5, 30*5, 200*5);
+		noObstacles = new Rectangle((GamePanel.WIDTH/2-15)*5, (GamePanel.HEIGHT/2-100)*5, GamePanel.WIDTH/16, GamePanel.WIDTH/16);
 		
 		coinsLeft = 0;
 		coinPoints = new ArrayList<Rectangle>();
-		phitbox = new Rectangle(p.getX()-4*5, p.getY()-4*5, GamePanel.WIDTH/32, GamePanel.WIDTH/32);
+		phitbox = new Rectangle(p.getX()-GamePanel.WIDTH/64, p.getY()-GamePanel.HEIGHT/64, GamePanel.WIDTH/32, GamePanel.WIDTH/32);
 		phitboxPoints = new ArrayList<Point>();
 		
 		facts = new ArrayList<String>();
@@ -124,11 +124,11 @@ private Player p;
 		}
 		
 		
-		phitbox.setBounds(p.getX()-20, p.getY()-20, GamePanel.WIDTH/32, GamePanel.WIDTH/32);
+		phitbox.setBounds(p.getX(), p.getY(), GamePanel.WIDTH/32, GamePanel.WIDTH/32);
 		phitboxPoints.clear();
-		for (int x = p.getX()-15; x <= p.getX()+15; x++)
+		for (int x = (int) phitbox.getX(); x <= phitbox.getMaxX(); x++)
 		{
-			for (int y = p.getY()-15; y <= p.getY()+15; y++)
+			for (int y = (int) phitbox.getY(); y <= phitbox.getMaxY(); y++)
 			{
 				phitboxPoints.add(new Point(x, y));
 			}
@@ -142,12 +142,15 @@ private Player p;
 			
 			Rectangle point = it.next();
 			
-			if (phitbox.contains(point))
+			for (Point p : phitboxPoints)
 			{
-				
-				it.remove();
-				
-				
+				if (point.contains(p))
+				{
+					
+					it.remove();
+					point = it.next();
+					
+				}
 			}
 			
 		}
@@ -168,6 +171,8 @@ private Player p;
 			}
 			
 		}
+		
+		
 		
 		coinsLeft = coinPoints.size();
 		
@@ -193,7 +198,7 @@ private Player p;
 		int i = 0;
 		while (i < 10)
 		{
-			coinPoints.add(new Rectangle(ThreadLocalRandom.current().nextInt(10, GamePanel.WIDTH - 10), ThreadLocalRandom.current().nextInt(10, GamePanel.HEIGHT - 10), 
+			coinPoints.add(new Rectangle(ThreadLocalRandom.current().nextInt(50, GamePanel.WIDTH - 10), ThreadLocalRandom.current().nextInt(50, GamePanel.HEIGHT - 10), 
 					GamePanel.WIDTH/64, GamePanel.WIDTH/64));
 			i++;
 		}
@@ -258,15 +263,13 @@ private Player p;
 		g.setColor(Color.BLACK);
 		g.drawImage(bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		g.setColor(Color.ORANGE);
-		g.drawOval(p.getX()-15, p.getY()-15, GamePanel.WIDTH/32 , GamePanel.WIDTH/32);
-		g.setColor(Color.RED);
-		
-		g.fillOval(p.getX()-15, p.getY()-15, GamePanel.WIDTH/32 , GamePanel.WIDTH/32);
+		g.fill(phitbox);
 		g.setColor(Color.YELLOW);
+		
 		for (Rectangle point : coinPoints)
 		{
 			
-			g.fillRect((int) (point.getX()-2)*5, (int) (point.getY()-2)*5, GamePanel.WIDTH/64, GamePanel.WIDTH/64);
+			g.fillRect((int) (point.getX()), (int) (point.getY()), GamePanel.WIDTH/64, GamePanel.WIDTH/64);
 			
 		}
 		
