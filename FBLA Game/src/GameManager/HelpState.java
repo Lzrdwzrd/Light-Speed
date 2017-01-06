@@ -38,69 +38,69 @@ public class HelpState extends GameState{
 	@Override
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
-		g.drawImage(bg, 0, 0, 230, 190, null);
+		g.drawImage(bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		
 		g.setColor(Color.YELLOW);
-		g.setFont(new Font("Calibri", Font.BOLD, 30));
-		g.drawString("HELP", 21, 30);
-		g.drawString("HELP", 19, 30);
-		g.drawString("HELP", 20, 31);
-		g.drawString("HELP", 20, 29);
+		g.setFont(new Font("Calibri", Font.BOLD, 200));
+		g.drawString("HELP", 105, 150);
+		g.drawString("HELP", 95, 150);
+		g.drawString("HELP", 100, 155);
+		g.drawString("HELP", 100, 145);
 		g.setColor(Color.RED);
-		g.drawString("HELP", 20, 30);
+		g.drawString("HELP", 100, 150);
 		
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, 13));
+		g.setFont(new Font("Calibri", Font.PLAIN, 13*5));
 		g.setColor(Color.BLACK);
-		g.drawString("F1 returns you to the main menu.", 11, 50);
+		g.drawString("F1 returns you to the main menu.", 11*5, 50*5);
 		
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, 13));
+		g.setFont(new Font("Calibri", Font.PLAIN, 13*5));
 		g.setColor(Color.BLACK);
-		g.drawString("F1 returns you to the main menu.", 11, 50);
-		g.drawString("Escape pauses the game.", 11, 65);
+		g.drawString("F1 returns you to the main menu.", 11*5, 50*5);
 		
-		g.drawString("F1 returns you to the main menu.", 9, 50);
-		g.drawString("Escape pauses the game.", 9, 65);
 		
-		g.drawString("F1 returns you to the main menu.", 10, 51);
-		g.drawString("Escape pauses the game.", 10, 66);
+		g.drawString("F1 returns you to the main menu.", 9*5, 50*5);
 		
-		g.drawString("F1 returns you to the main menu.", 10, 49);
-		g.drawString("Escape pauses the game.", 10, 64);
+		
+		g.drawString("F1 returns you to the main menu.", 10*5, 51*5);
+		
+		
+		g.drawString("F1 returns you to the main menu.", 10*5, 49*5);
+		
 
 		g.setColor(Color.ORANGE);
-		g.drawString("F1 returns you to the main menu.", 10, 50);
-		g.drawString("Escape pauses the game.", 10, 65);
+		g.drawString("F1 returns you to the main menu.", 10*5, 50*5);
+		
 		
 		
 		
 		g.setColor(Color.BLACK);
-		g.drawString("Turn with the arrow keys.", 10-1, 90);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10-1, 105);
-		g.drawString("Collecting all coins increases level.", 10-1, 120);
-		g.drawString("Difficulty raises with level.", 10-1, 135);
+		g.drawString("Turn with the arrow keys.", 9*5, 90*5);
+		g.drawString("Avoid 'spikes' and collect 'coins'.", 9*5, 105*5);
+		g.drawString("Collecting all coins increases level.", 9*5, 120*5);
+		g.drawString("Difficulty raises with level.", 9*5, 135*5);
 		
-		g.drawString("Turn with the arrow keys.", 10+1, 90);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10+1, 105);
-		g.drawString("Collecting all coins increases level.", 10+1, 120);
-		g.drawString("Difficulty raises with level.", 10+1, 135);
+		g.drawString("Turn with the arrow keys.", 9*5, 90*5);
+		g.drawString("Avoid 'spikes' and collect 'coins'.", 9*5, 105*5);
+		g.drawString("Collecting all coins increases level.", 9*5, 120*5);
+		g.drawString("Difficulty raises with level.", 9*5, 135*5);
 		
-		g.drawString("Turn with the arrow keys.", 10, 90+1);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10, 105+1);
-		g.drawString("Collecting all coins increases level.", 10, 120+1);
-		g.drawString("Difficulty raises with level.", 10, 135+1);
+		g.drawString("Turn with the arrow keys.", 10*5, 91*5);
+		g.drawString("Avoid 'spikes' and collect 'coins'.", 10*5, 106*5);
+		g.drawString("Collecting all coins increases level.", 10*5, 121*5);
+		g.drawString("Difficulty raises with level.", 10*5, 136*5);
 		
-		g.drawString("Turn with the arrow keys.", 10, 90-1);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10, 105-1);
-		g.drawString("Collecting all coins increases level.", 10, 120-1);
-		g.drawString("Difficulty raises with level.", 10, 135-1);
+		g.drawString("Turn with the arrow keys.", 10*5, 89*5);
+		g.drawString("Avoid 'spikes' and collect 'coins'.", 10*5, 104*5);
+		g.drawString("Collecting all coins increases level.", 10*5, 119*5);
+		g.drawString("Difficulty raises with level.", 10*5, 134*5);
 		
 		g.setColor(Color.YELLOW);
-		g.drawString("Turn with the arrow keys.", 10, 90);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10, 105);
-		g.drawString("Collecting all coins increases level.", 10, 120);
-		g.drawString("Difficulty raises with level.", 10, 135);
+		g.drawString("Turn with the arrow keys.", 10*5, 90*5);
+		g.drawString("Avoid 'spikes' and collect 'coins'.", 10*5, 105*5);
+		g.drawString("Collecting all coins increases level.", 10*5, 120*5);
+		g.drawString("Difficulty raises with level.", 10*5, 135*5);
 		
 		
 		

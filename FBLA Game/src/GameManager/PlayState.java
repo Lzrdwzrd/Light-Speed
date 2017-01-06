@@ -16,7 +16,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -70,11 +69,11 @@ private Player p;
 		p = new Player(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		
 		obstacles = new ArrayList<Rectangle>();
-		noObstacles = new Rectangle(GamePanel.WIDTH/2-15, GamePanel.HEIGHT/2-30, 30, 60);
+		noObstacles = new Rectangle((GamePanel.WIDTH/2-15)*5, (GamePanel.HEIGHT/2-100)*5, 30*5, 200*5);
 		
 		coinsLeft = 0;
 		coinPoints = new ArrayList<Point>();
-		phitbox = new Rectangle(p.getX()-4, p.getY()-4, 9, 9);
+		phitbox = new Rectangle(p.getX()-4*5, p.getY()-4*5, 9*5, 9*5);
 		phitboxPoints = new ArrayList<Point>();
 		
 		facts = new ArrayList<String>();
@@ -125,19 +124,14 @@ private Player p;
 		}
 		
 		
-		phitbox.setBounds(p.getX()-4, p.getY()-4, 9, 9);
+		phitbox.setBounds(p.getX()-20, p.getY()-20, 9*5, 9*5);
 		phitboxPoints.clear();
-		for (int i = p.getX()-3; i <= p.getX()+3; i++)
+		for (int x = p.getX()-15; x <= p.getX()+15; x++)
 		{
-			
-			phitboxPoints.add(new Point(i, p.getY()-3));
-			phitboxPoints.add(new Point(i, p.getY()-2));
-			phitboxPoints.add(new Point(i, p.getY()-1));
-			phitboxPoints.add(new Point(i, p.getY()));
-			phitboxPoints.add(new Point(i, p.getY()+1));
-			phitboxPoints.add(new Point(i, p.getY()+2));
-			phitboxPoints.add(new Point(i, p.getY()+3));
-			
+			for (int y = p.getY()-15; y <= p.getY()+15; y++)
+			{
+				phitboxPoints.add(new Point(x, y));
+			}
 		}
 		
 		
@@ -249,7 +243,7 @@ private Player p;
 		
 		fps += 10;
 		
-		
+		gsm.setPaused(true);
 	}
 
 	@Override
@@ -257,17 +251,17 @@ private Player p;
 		// TODO Auto-generated method stub
 		
 		g.setColor(Color.BLACK);
-		g.drawImage(bg, 0, 0, 250, 180, null);
+		g.drawImage(bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		g.setColor(Color.ORANGE);
-		g.drawOval(p.getX()-3, p.getY()-3, 7, 7);
+		g.drawOval(p.getX()-15, p.getY()-15, 35, 35);
 		g.setColor(Color.RED);
-		g.fillOval(p.getX()-3, p.getY()-3, 7, 7);
+		g.fillOval(p.getX()-15, p.getY()-15, 35, 35);
 		
 		g.setColor(Color.YELLOW);
 		for (Point point : coinPoints)
 		{
 			
-			g.fillOval((int) point.getX()-2, (int) point.getY()-2, 5, 5);
+			g.fillOval((int) (point.getX()-2)*5, (int) (point.getY()-2)*5, 5*5, 5*5);
 			
 		}
 		
@@ -295,9 +289,9 @@ private Player p;
 			p.rotateRight();
 			
 		}
-		if (Keys.isPressed(Keys.ESCAPE))
+		if (Keys.isPressed(Keys.F1))
 		{
-			gsm.setPaused(true);
+			gsm.setState(GameStateManager.MENU);
 		}
 		
 	}

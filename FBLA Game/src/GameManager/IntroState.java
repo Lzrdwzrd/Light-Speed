@@ -23,6 +23,7 @@ public class IntroState extends GameState {
 	
 	public void init() {
 		ticks = 0;
+		
 	}
 	
 	public void update() {
