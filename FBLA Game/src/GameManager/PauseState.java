@@ -124,6 +124,12 @@ public class PauseState extends GameState {
 		g.drawString(""+Math.round(tick/120.0), 5, 130);
 		
 	}
-	public void handleInput() {}
+	public void handleInput() {
+		// TODO Auto-generated method stub
+		if (Keys.isPressed(Keys.F1))
+		{
+			gsm.setPaused(false);
+		}
+	}
 	
 }

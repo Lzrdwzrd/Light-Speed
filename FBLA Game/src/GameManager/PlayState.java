@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -149,7 +150,10 @@ private Player p;
 					
 					it.remove();
 					point = it.next();
-					
+					try{
+						it.next();
+					} catch(NoSuchElementException e) {};
+				
 				}
 			}
 			

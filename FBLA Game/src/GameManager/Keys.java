@@ -31,6 +31,7 @@ public class Keys {
 	public static int S = 9;
 	public static int D = 10;
 	public static int F1 = 11;
+	public static int F2 = 12;
 	
 	
 	
@@ -47,6 +48,7 @@ public class Keys {
 		else if(i == KeyEvent.VK_S) keyState[S] = b;
 		else if(i == KeyEvent.VK_D) keyState[D] = b;
 		else if(i == KeyEvent.VK_F1) keyState[F1] = b;
+		else if(i == KeyEvent.VK_F2) keyState[F2] = b;
 	}
 	
 	public static void update() {
