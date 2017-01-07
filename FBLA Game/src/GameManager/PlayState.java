@@ -137,8 +137,9 @@ private Player p;
 		
 		
 		
+		Iterator<Rectangle> it = coinPoints.iterator();
 		
-		for (Iterator<Rectangle> it = coinPoints.iterator(); it.hasNext();)
+		while (it.hasNext())
 		{
 			
 			Rectangle point = it.next();
@@ -150,10 +151,7 @@ private Player p;
 					
 					it.remove();
 					point = it.next();
-					try{
-						it.next();
-					} catch(NoSuchElementException e) {};
-				
+					
 				}
 			}
 			
