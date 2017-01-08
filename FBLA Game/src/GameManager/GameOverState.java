@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,7 +47,13 @@ public class GameOverState extends GameState {
 		{
 			playerName = "Unknown";
 		}
-		BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("leaderboard.txt")));
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(new File(System.getProperty("user.home") + "\\Light-Speed\\leaderboard.txt")));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		HashMap<String, Integer> scores = new HashMap<String, Integer>();
 		scores.put(playerName, PlayState.getLevel());
 		System.out.println(scores);
@@ -55,7 +63,7 @@ public class GameOverState extends GameState {
 			while ((currentLine = br.readLine()) != null) 
 			{
 				String[] currentLineData = currentLine.trim().split(":");
-				int score = Integer.parseInt(currentLineData[1]);
+				int score = Integer.parseInt(currentLineData[1].trim());
 				
 				scores.put(currentLineData[0], score);
 				System.out.println(currentLineData);
@@ -76,13 +84,13 @@ public class GameOverState extends GameState {
 		}
 		
 		ArrayList<Integer> scoreInts = new ArrayList<Integer>();
-		int previous = -9999999;
+		int previous = -1;
 		int i = 0;
 		
 		for (int score : scores.values())
 		{
 			
-			if (score >= previous)
+			if (score >= previous && i >= 0)
 			{
 				scoreInts.add(i, new Integer(score));
 			}else
@@ -93,7 +101,7 @@ public class GameOverState extends GameState {
 			i++;
 			
 		}
-		System.out.println(scores.values());
+		
 		StringBuilder sb = new StringBuilder();
 		ArrayList<Integer> newScores = new ArrayList<Integer>();
 		ArrayList<Integer> alreadyhas = new ArrayList<Integer>();
@@ -105,8 +113,6 @@ public class GameOverState extends GameState {
 			alreadyhas.add(it);
 			
 		}
-		System.out.println(scoreInts);
-		System.out.println(newScores);
 		for (int score : newScores)
 		{
 			

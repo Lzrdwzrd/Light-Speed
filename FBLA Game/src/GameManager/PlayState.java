@@ -214,15 +214,11 @@ private Player p;
 			obstacles.add(r);
 			
 				
-				if (noObstacles.contains(point))
+				if (noObstacles.contains(point) || phitbox.contains(point) || coinPoints.contains(point))
 				{
 					
 					obstacles.remove(r);
 					
-				}
-				if (coinPoints.contains(point))
-				{
-					obstacles.remove(r);
 				}
 				
 				
