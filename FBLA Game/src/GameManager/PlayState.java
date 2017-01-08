@@ -62,7 +62,7 @@ private Player p;
 		fps = 20;
 		GamePanel.setFPS(fps);
 		try {
-			bg = ImageIO.read(new File("src/GameManager/icetexture.jpg"));
+			bg = ImageIO.read(this.getClass().getResource("icetexture.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,9 +150,10 @@ private Player p;
 				{
 					
 					it.remove();
-					point = it.next();
-					
+					break;
 				}
+				
+				
 			}
 			
 		}
@@ -264,6 +265,7 @@ private Player p;
 		
 		g.setColor(Color.BLACK);
 		g.drawImage(bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
+		//PLAYER DRAWING-- NEEDS ANIMATION
 		g.setColor(Color.ORANGE);
 		g.fill(phitbox);
 		g.setColor(Color.YELLOW);

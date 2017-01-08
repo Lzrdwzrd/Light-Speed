@@ -22,7 +22,7 @@ public class HelpState extends GameState{
 		// TODO Auto-generated method stub
 		GamePanel.resetFPS();
 		try {
-			bg = ImageIO.read(new File("src/GameManager/question.jpg"));
+			bg = ImageIO.read(this.getClass().getResource("question.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

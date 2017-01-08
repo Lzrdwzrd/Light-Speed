@@ -41,7 +41,7 @@ public class MenuState extends GameState {
 		
 		GamePanel.resetFPS();
 		try {
-			bg = ImageIO.read(new File("src/GameManager/icetextureblurred.jpg"));
+			bg = ImageIO.read(this.getClass().getResource("icetextureblurred.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
