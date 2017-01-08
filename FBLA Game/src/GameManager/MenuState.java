@@ -29,6 +29,7 @@ public class MenuState extends GameState {
 	private int repeats = 0;
 	private String[] options = {
 		"Start",
+		"LeaderBoard",
 		"Help",
 		"Quit"
 	};
@@ -153,23 +154,29 @@ public class MenuState extends GameState {
 			g.drawString("Light Speed", 19+(20+19)*5, 26*5);
 		}
 		
-		g.setFont(new Font("Calibri", Font.BOLD, 22*5));
+		g.setFont(new Font("Calibri", Font.BOLD, 20*5));
 		g.setColor(Color.CYAN);
 		g.drawString(options[0], 50*5, 70*5);
 		g.setColor(Color.BLUE);
 		g.drawString(options[0], 51*5, 70*5);
 		
-		g.setFont(new Font("Calibri", Font.BOLD, 22*5));
+		g.setFont(new Font("Calibri", Font.BOLD, 20*5));
 		g.setColor(Color.CYAN);
-		g.drawString(options[1], 50*5, 100*5);
+		g.drawString(options[1], 50*5, 90*5);
 		g.setColor(Color.BLUE);
-		g.drawString(options[1], 51*5, 100*5);
+		g.drawString(options[1], 51*5, 90*5);
 		
-		g.setFont(new Font("Calibri", Font.BOLD, 22*5));
+		g.setFont(new Font("Calibri", Font.BOLD, 20*5));
 		g.setColor(Color.CYAN);
-		g.drawString(options[2], 50*5, 130*5);
+		g.drawString(options[2], 50*5, 110*5);
 		g.setColor(Color.BLUE);
-		g.drawString(options[2], 51*5, 130*5);
+		g.drawString(options[2], 51*5, 110*5);
+		
+		g.setFont(new Font("Calibri", Font.BOLD, 20*5));
+		g.setColor(Color.CYAN);
+		g.drawString(options[3], 50*5, 130*5);
+		g.setColor(Color.BLUE);
+		g.drawString(options[3], 51*5, 130*5);
 		
 		if (currentOption == 0){
 			if (tick < 10){
@@ -188,34 +195,47 @@ public class MenuState extends GameState {
 		if (currentOption == 1){
 			if (tick < 10){
 				g.setColor(Color.BLUE);
-				g.fillOval(30*5, 85*5, 10*5, 10*5);
+				g.fillOval(30*5, 75*5, 10*5, 10*5);
 				g.setColor(Color.CYAN);
-				g.fillOval(31*5, 86*5, 8*5, 8*5);
+				g.fillOval(31*5, 76*5, 8*5, 8*5);
 			}else{
 				g.setColor(Color.CYAN);
-				g.fillOval(30*5, 85*5, 10*5, 10*5);
+				g.fillOval(30*5, 75*5, 10*5, 10*5);
 				g.setColor(Color.BLUE);
-				g.fillOval(31*5, 86*5, 8*5, 8*5);
+				g.fillOval(31*5, 76*5, 8*5, 8*5);
 			}
 		}else
 		if (currentOption == 2){
 			if (tick < 10){
 				g.setColor(Color.BLUE);
-				g.fillOval(30*5, 115*5, 10*5, 10*5);
+				g.fillOval(30*5, 95*5, 10*5, 10*5);
 				g.setColor(Color.CYAN);
-				g.fillOval(31*5, 116*5, 8*5, 8*5);
+				g.fillOval(31*5, 96*5, 8*5, 8*5);
 			}else{
 				g.setColor(Color.CYAN);
-				g.fillOval(30*5, 115*5, 10*5, 10*5);
+				g.fillOval(30*5, 95*5, 10*5, 10*5);
 				g.setColor(Color.BLUE);
-				g.fillOval(31*5, 116*5, 8*5, 8*5);
+				g.fillOval(31*5, 96*5, 8*5, 8*5);
 			}
-		}
+		}else
+			if (currentOption == 3){
+				if (tick < 10){
+					g.setColor(Color.BLUE);
+					g.fillOval(30*5, 115*5, 10*5, 10*5);
+					g.setColor(Color.CYAN);
+					g.fillOval(31*5, 116*5, 8*5, 8*5);
+				}else{
+					g.setColor(Color.CYAN);
+					g.fillOval(30*5, 115*5, 10*5, 10*5);
+					g.setColor(Color.BLUE);
+					g.fillOval(31*5, 116*5, 8*5, 8*5);
+				}
+			}
 		
 		
 		
 	}
-	
+	//
 	public void handleInput() {
 		if((Keys.isPressed(Keys.DOWN) || Keys.isPressed(Keys.S)) && currentOption < options.length - 1) {
 			JukeBox.play("menuoption");
@@ -236,9 +256,12 @@ public class MenuState extends GameState {
 			gsm.setState(GameStateManager.PLAY);
 		}
 		if(currentOption == 1) {
-			gsm.setState(GameStateManager.HELP);
+			gsm.setState(GameStateManager.LEADERBOARD);
 		}
 		if(currentOption == 2) {
+			gsm.setState(GameStateManager.HELP);
+		}
+		if(currentOption == 3) {
 			System.exit(0);
 		}
 	}

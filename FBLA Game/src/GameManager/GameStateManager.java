@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 
 
 public class GameStateManager {
-	
+	//
 	private boolean paused;
 	private PauseState pauseState;
 	
@@ -18,12 +18,13 @@ public class GameStateManager {
 	private int currentState;
 	private int previousState;
 	
-	public static final int NUM_STATES = 5;
+	public static final int NUM_STATES = 6;
 	public static final int INTRO = 0;
 	public static final int MENU = 1;
 	public static final int PLAY = 2;
 	public static final int GAMEOVER = 3;
 	public static final int HELP = 4;
+	public static final int LEADERBOARD = 5;
 	
 	public GameStateManager() {
 		
@@ -59,6 +60,10 @@ public class GameStateManager {
 		}
 		else if(i == HELP) {
 			gameStates[i] = new HelpState(this);
+			gameStates[i].init();
+		}
+		else if(i == LEADERBOARD) {
+			gameStates[i] = new LeaderboardState(this);
 			gameStates[i].init();
 		}
 	}
