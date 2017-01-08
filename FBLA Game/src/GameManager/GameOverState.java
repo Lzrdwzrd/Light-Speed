@@ -40,7 +40,7 @@ public class GameOverState extends GameState {
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 			g.setColor(Color.YELLOW);
-			g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
+			g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/9));
 			g.drawString("CONGRATULATIONS!", (3*(xSegment/2) + xSegment/20), 3*ySegment);
 			g.drawString("CONGRATULATIONS!", (3*(xSegment/2)- xSegment/20), 3*ySegment);
 			g.drawString("CONGRATULATIONS!", 3*(xSegment/2), (3*ySegment + ySegment/30));
