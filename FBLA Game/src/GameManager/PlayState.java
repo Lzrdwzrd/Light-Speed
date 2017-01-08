@@ -70,7 +70,7 @@ private Player p;
 		p = new Player(GamePanel.WIDTH/2, GamePanel.HEIGHT/2);
 		
 		obstacles = new ArrayList<Rectangle>();
-		noObstacles = new Rectangle((GamePanel.WIDTH/2-15)*5, (GamePanel.HEIGHT/2-100)*5, GamePanel.WIDTH/16, GamePanel.WIDTH/16);
+		noObstacles = new Rectangle((GamePanel.WIDTH/2-GamePanel.WIDTH/12), 0, GamePanel.WIDTH/6, GamePanel.HEIGHT);
 		
 		coinsLeft = 0;
 		coinPoints = new ArrayList<Rectangle>();
@@ -207,7 +207,7 @@ private Player p;
 		}
 		obstacles.clear();
 		i = 0;
-		while (i < 7)
+		while (i < 15)
 		{
 			Point point = new Point(ThreadLocalRandom.current().nextInt(10, GamePanel.WIDTH - 10), ThreadLocalRandom.current().nextInt(10, GamePanel.HEIGHT - 10));
 			Rectangle r = new Rectangle((int) point.getX(), (int) point.getY(), GamePanel.WIDTH/64, GamePanel.WIDTH/64);
