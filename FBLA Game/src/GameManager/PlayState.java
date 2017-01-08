@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -79,11 +80,10 @@ private Player p;
 		
 		facts = new ArrayList<String>();
 		
-		FileReader fr = null;
 		BufferedReader br = null;
 		try {
-			fr = new FileReader(new File("src/GameManager/randomfacts.txt"));
-			br = new BufferedReader(fr);
+			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("randomfacts.txt")));
+			
 			String s = "";
 			while ((s = br.readLine()) != null)
 			{
@@ -91,7 +91,7 @@ private Player p;
 				facts.add(s);
 				
 			}
-			fr.close();
+			
 			br.close();
 			
 		} catch (Exception e) {
@@ -265,7 +265,11 @@ private Player p;
 		
 		g.setColor(Color.BLACK);
 		g.drawImage(bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		//PLAYER DRAWING-- NEEDS ANIMATION
+		//TODO: PLAYER DRAWING-- NEEDS ANIMATION
+		//TODO
+		//TODO
+		//TODO
+		//TODO
 		g.setColor(Color.ORANGE);
 		g.fill(phitbox);
 		g.setColor(Color.YELLOW);

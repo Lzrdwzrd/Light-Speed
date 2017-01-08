@@ -1,42 +1,158 @@
 // Congratulations for finishing the game.
-// Gives you a rank based on how long it took
-// you to beat the game.
-
-// Under two minutes = Speed Demon
-// Under three minutes = Adventurer
-// Under four minutes = Beginner
-// Four minutes or greater = Bumbling Idiot
 
 package GameManager;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.swing.JOptionPane;
 
 public class GameOverState extends GameState {
-	
+	private boolean dataEntered = false;
 	public GameOverState(GameStateManager gsm) {
 		super(gsm);
 	}
 	
 	public void init() {
 		
+		dataEntered = false;
 		GamePanel.resetFPS();
 		
 	}
 	
 	public void update() 
 	{
+		if (dataEntered == false)
+		{
+		String playerName = JOptionPane.showInputDialog("What is your name?");
+		if (playerName == null || playerName.equals(""))
+		{
+			playerName = "Unknown";
+		}
+		BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("leaderboard.txt")));
+		HashMap<String, Integer> scores = new HashMap<String, Integer>();
+		scores.put(playerName, PlayState.getLevel());
+		System.out.println(scores);
+		String currentLine;
+		try {
+			
+			while ((currentLine = br.readLine()) != null) 
+			{
+				String[] currentLineData = currentLine.trim().split(":");
+				int score = Integer.parseInt(currentLineData[1]);
+				
+				scores.put(currentLineData[0], score);
+				System.out.println(currentLineData);
+				
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally
+		{
+			try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		ArrayList<Integer> scoreInts = new ArrayList<Integer>();
+		int previous = -9999999;
+		int i = 0;
+		
+		for (int score : scores.values())
+		{
+			
+			if (score >= previous)
+			{
+				scoreInts.add(i, new Integer(score));
+			}else
+			{
+				scoreInts.add(score);
+			}
+			previous = score;
+			i++;
+			
+		}
+		System.out.println(scores.values());
+		StringBuilder sb = new StringBuilder();
+		ArrayList<Integer> newScores = new ArrayList<Integer>();
+		ArrayList<Integer> alreadyhas = new ArrayList<Integer>();
+		for (int it : scoreInts)
+		{
+			
+			if (!alreadyhas.contains(it))
+				newScores.add(it);
+			alreadyhas.add(it);
+			
+		}
+		System.out.println(scoreInts);
+		System.out.println(newScores);
+		for (int score : newScores)
+		{
+			
+			ArrayList<String> keys = getKeysByValue(scores, score);
+			
+			for (String s : keys)
+			{
+				
+				sb.append(s + ": " + score + System.getProperty("line.separator"));
+				
+			}
+			
+			
+		}
+			BufferedWriter bw = null;
+			try {
+				bw = new BufferedWriter(new FileWriter(new File(System.getProperty("user.home") + "\\Light-Speed\\leaderboard.txt")));
+				bw.write(sb.toString());
+				
+				
+				
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally
+			{
+				try{
+				      if(bw!=null)
+				    	  bw.close();
+				   }catch(Exception ex){
+				       System.out.println("Error in closing the BufferedWriter"+ex);
+				    }
+			}
+			
+		}
+		dataEntered = true;
 		handleInput();
 	}
-	
 	public void draw(Graphics2D g) {
 		
 		int xSegment = GamePanel.WIDTH/16;
 		int ySegment = GamePanel.HEIGHT/16;
 		
 			
-		
+			
 			g.setColor(Color.BLACK);
 			g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 			g.setColor(Color.YELLOW);
@@ -50,7 +166,7 @@ public class GameOverState extends GameState {
 		
 			g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/10));
 			g.drawString("You reached Level: " + PlayState.getLevel() + "!", 3*xSegment, 5*ySegment);
-		
+			
 			g.setColor(Color.YELLOW);
 			g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/12));
 			g.drawString("Press f1 to return to the menu.", 3*xSegment, 14*ySegment);
@@ -58,9 +174,18 @@ public class GameOverState extends GameState {
 		
 		
 	}
+	public static <T, E> ArrayList<T> getKeysByValue(Map<T, E> map, E value) {
+	    ArrayList<T> keys = new ArrayList<T>();
+	    for (Entry<T, E> entry : map.entrySet()) {
+	        if (Objects.equals(value, entry.getValue())) {
+	            keys.add(entry.getKey());
+	        }
+	    }
+	    return keys;
+	}
 	
 	public void handleInput() {
-		if(Keys.isPressed(Keys.F1)) {
+		if(Keys.isPressed(Keys.F1) && dataEntered) {
 			gsm.setState(GameStateManager.MENU);
 		}
 	}
