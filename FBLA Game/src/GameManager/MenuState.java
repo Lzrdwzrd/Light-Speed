@@ -47,8 +47,9 @@ public class MenuState extends GameState {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TODO: Jukebox load music, initialize background
-		
+		//TODO: Jukebox load music, initialize background yah
+		JukeBox.load("MenuMusic.mp3", "MenuMusic");
+		JukeBox.loop("MenuMusic");
 	}
 	
 	public void update() {
@@ -56,6 +57,7 @@ public class MenuState extends GameState {
 		handleInput();
 		if (tick < 20){
 			tick++;
+			
 		}
 		else{
 			tick = 0;
