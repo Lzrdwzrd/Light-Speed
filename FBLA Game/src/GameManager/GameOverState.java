@@ -35,27 +35,26 @@ public class GameOverState extends GameState {
 		int xSegment = GamePanel.WIDTH/16;
 		int ySegment = GamePanel.HEIGHT/16;
 		
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
-		g.setColor(Color.YELLOW);
-		g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
-		g.drawString("Game Over", (3*xSegment + xSegment/20), 2*ySegment);
-		g.drawString("Game Over", (3*xSegment - xSegment/20), 2*ySegment);
-		g.drawString("Game Over", 3*xSegment, (2*ySegment + ySegment/30));
-		g.drawString("Game Over", 3*xSegment, (2*ySegment - ySegment/30));
-		g.setColor(Color.RED);
-		g.drawString("Game Over", 3*xSegment, 2*ySegment);
+			
 		
-		g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/10));
-		g.drawString("Highest level reached: " + PlayState.getLevel(), 2*xSegment, 5*ySegment);
+			g.setColor(Color.BLACK);
+			g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+			g.setColor(Color.YELLOW);
+			g.setFont(new Font("Calibri", Font.BOLD, GamePanel.HEIGHT/6));
+			g.drawString("CONGRATULATIONS!", (3*(xSegment/2) + xSegment/20), 3*ySegment);
+			g.drawString("CONGRATULATIONS!", (3*(xSegment/2)- xSegment/20), 3*ySegment);
+			g.drawString("CONGRATULATIONS!", 3*(xSegment/2), (3*ySegment + ySegment/30));
+			g.drawString("CONGRATULATIONS!", 3*(xSegment/2), (3*ySegment - ySegment/30));
+			g.setColor(Color.RED);
+			g.drawString("CONGRATULATIONS!", 3*(xSegment/2), 3*ySegment);
 		
-		g.setColor(Color.YELLOW);
-		g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/12));
-		g.drawString("Press f1 to return to the menu.", 2*xSegment, 7*ySegment);
+			g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/10));
+			g.drawString("You reached Level: " + PlayState.getLevel() + "!", 3*xSegment, 5*ySegment);
 		
-		
-		
-		
+			g.setColor(Color.YELLOW);
+			g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/12));
+			g.drawString("Press f1 to return to the menu.", 3*xSegment, 14*ySegment);
+			
 		
 		
 	}

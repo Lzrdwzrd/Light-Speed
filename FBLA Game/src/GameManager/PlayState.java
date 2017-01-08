@@ -305,6 +305,7 @@ private Player p;
 		{
 			gsm.setState(GameStateManager.MENU);
 		}
+			
 		
 	}
 	
