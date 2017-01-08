@@ -59,6 +59,11 @@ private Player p;
 	//init() method is basically just a constructor for this. it's just easier to understand because it stands for initialization.
 	public void init() {
 		// TODO Auto-generated method stub
+		
+		JukeBox.load("bgmusic.mp3", "bgmusic");
+		JukeBox.loop("bgmusic");
+		JukeBox.load("tilechange.wav", "tilechange");
+		JukeBox.load("collect.wav", "collect");
 		level = 0;
 		fps = 20;
 		GamePanel.setFPS(fps);
@@ -150,6 +155,7 @@ private Player p;
 				{
 					
 					it.remove();
+					JukeBox.play("collect");
 					break;
 				}
 				
@@ -166,7 +172,7 @@ private Player p;
 				
 				if (r.contains(p))
 				{
-					
+					JukeBox.stop("bgmusic");
 					gsm.setState(GameStateManager.GAMEOVER);
 					
 				}
@@ -303,7 +309,10 @@ private Player p;
 		}
 		if (Keys.isPressed(Keys.F1))
 		{
+			JukeBox.stop("bgmusic");
+			JukeBox.play("tilechange");
 			gsm.setState(GameStateManager.MENU);
+			
 		}
 			
 		

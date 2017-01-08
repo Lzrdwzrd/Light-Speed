@@ -25,6 +25,8 @@ public class IntroState extends GameState {
 	}
 	
 	public void init() {
+		JukeBox.load("mapmove.wav", "mapmove");
+		JukeBox.play("mapmove");
 		ticks = 0;
 		try {
 			logo = ImageIO.read(this.getClass().getResource("AuthorsLogo.png"));

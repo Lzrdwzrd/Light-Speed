@@ -32,13 +32,14 @@ public class GameOverState extends GameState {
 	}
 	
 	public void init() {
-		
+		JukeBox.load("finish.mp3", "finish");
+		JukeBox.play("finish");
 		dataEntered = false;
 		GamePanel.resetFPS();
 		
 	}
 	
-	public void update() 
+	public void update()
 	{
 		if (dataEntered == false)
 		{

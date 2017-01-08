@@ -50,6 +50,8 @@ public class MenuState extends GameState {
 		//TODO: Jukebox load music, initialize background yah
 		JukeBox.load("MenuMusic.mp3", "MenuMusic");
 		JukeBox.loop("MenuMusic");
+		JukeBox.load("collect.wav", "collect");
+		JukeBox.load("menuoption.wav", "menuoption");
 	}
 	
 	public void update() {
@@ -240,14 +242,17 @@ public class MenuState extends GameState {
 	//
 	public void handleInput() {
 		if((Keys.isPressed(Keys.DOWN) || Keys.isPressed(Keys.S)) && currentOption < options.length - 1) {
+			
 			JukeBox.play("menuoption");
 			currentOption++;
 		}
 		if((Keys.isPressed(Keys.UP) || Keys.isPressed(Keys.W)) && currentOption > 0) {
+			
 			JukeBox.play("menuoption");
 			currentOption--;
 		}
 		if(Keys.isPressed(Keys.ENTER) || Keys.isPressed(Keys.SPACE)) {
+			JukeBox.stop("MenuMusic");
 			JukeBox.play("collect");
 			selectOption();
 		}
