@@ -77,7 +77,11 @@ public class PauseState extends GameState {
 		
 		g.setFont(new Font("Calibri", Font.PLAIN, GamePanel.HEIGHT/16));
 		g.setColor(Color.CYAN);
-
+		
+		if (length > 342){
+			g.drawString(fact.substring(342, 380), 2*xSegment, 13*ySegment);
+			
+		}
 		if (length > 342){
 			g.drawString(fact.substring(304, 342), 2*xSegment, 12*ySegment);
 			
@@ -113,6 +117,7 @@ public class PauseState extends GameState {
 		if (length > 38){
 			g.drawString(fact.substring(0, 38), 2*xSegment, 4*ySegment);
 		}
+		
 		
 		
 		
