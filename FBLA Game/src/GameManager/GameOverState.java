@@ -197,6 +197,7 @@ return sortedEntries;
 	
 	public void handleInput() {
 		if(Keys.isPressed(Keys.F1) && dataEntered) {
+			JukeBox.loop("MenuMusic");
 			gsm.setState(GameStateManager.MENU);
 		}
 	}

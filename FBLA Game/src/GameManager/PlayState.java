@@ -257,6 +257,7 @@ private Player p;
 	
 	public void nextLevel()
 	{
+		walktick = 0;
 		level++;
 		
 		p.setX(GamePanel.WIDTH/2);
