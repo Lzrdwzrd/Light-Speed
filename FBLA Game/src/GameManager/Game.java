@@ -12,10 +12,14 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 
 public class Game {
-	
+	private static JFrame window = null;
+	public static JFrame getWindow()
+	{
+		return window;
+	}
 	public static void main(String[] args) {
 		
-		JFrame window = new JFrame("Game");
+		window = new JFrame("Game");
 		
 		window.add(new GamePanel());
 		

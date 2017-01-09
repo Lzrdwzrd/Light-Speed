@@ -111,6 +111,10 @@ public class Player
 		
 	}
 	
+	public String getDirection()
+	{
+		return direction;
+	}
 	
 	
 	

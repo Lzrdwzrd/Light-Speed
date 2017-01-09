@@ -6,10 +6,15 @@ package GameManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class PauseState extends GameState {
 	
 	private double tick = 120*10;
+	private BufferedImage bg = null;
 	
 	public PauseState(GameStateManager gsm) {
 		super(gsm);
@@ -18,6 +23,13 @@ public class PauseState extends GameState {
 	public void init() 
 	{
 		tick = 120*10;
+		JukeBox.play("tilechange");
+		try {
+			bg = ImageIO.read(this.getClass().getResource("pausepic.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void update() {
@@ -25,6 +37,7 @@ public class PauseState extends GameState {
 		GamePanel.setFPS(120);
 		if (tick/120.0 <= 0)
 		{
+			JukeBox.play("tilechange");
 			gsm.setPaused(false);
 			tick = 120*10;
 		}
@@ -38,8 +51,8 @@ public class PauseState extends GameState {
 		
 		int xSegment = GamePanel.WIDTH/16;
 		int ySegment = GamePanel.HEIGHT/16;
-		
 		g.setColor(Color.BLACK);
+
 		g.drawImage(PlayState.bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		
 		
@@ -128,7 +141,11 @@ public class PauseState extends GameState {
 		// TODO Auto-generated method stub
 		if (Keys.isPressed(Keys.F1))
 		{
+			JukeBox.stop("bgmusic");
+			JukeBox.play("tilechange");
 			gsm.setPaused(false);
+			gsm.setState(GameStateManager.MENU);
+			
 		}
 	}
 	

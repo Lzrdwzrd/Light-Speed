@@ -41,7 +41,12 @@ private Player p;
 	private Rectangle noObstacles;
 	private static ArrayList<String> facts;
 	private int fps = 20;
-
+	private int walktick = 0;
+	private int lives = 3;
+	private int invulnerableTicks = 0;
+	private BufferedImage heart, book, fire, frontview0, frontview1, frontview2, frontview3, backview0, backview1, backview2, backview3, leftview0, leftview1, leftview2, leftview3, leftview4, rightview0, rightview1, rightview2, rightview3, rightview4;
+	
+	
 	public PlayState(GameStateManager gsm) {
 		super(gsm);
 		// TODO Auto-generated constructor stub
@@ -60,15 +65,61 @@ private Player p;
 	public void init() {
 		// TODO Auto-generated method stub
 		
-		JukeBox.load("bgmusic.mp3", "bgmusic");
+		//IMAGES
+		
+		
+		try {
+			
+			
+			
+			book = ImageIO.read(this.getClass().getResource("book.png"));
+			fire = ImageIO.read(this.getClass().getResource("fire.png"));
+			frontview0 = ImageIO.read(this.getClass().getResource("frontViewCharacter0000.png"));
+			frontview1 = ImageIO.read(this.getClass().getResource("frontViewCharacter0001.png"));
+			frontview2 = ImageIO.read(this.getClass().getResource("frontViewCharacter0002.png"));
+			frontview3 = ImageIO.read(this.getClass().getResource("frontViewCharacter0003.png"));
+			backview0 = ImageIO.read(this.getClass().getResource("backViewCharacter0000.png"));
+			backview1 = ImageIO.read(this.getClass().getResource("backViewCharacter0001.png"));
+			backview2 = ImageIO.read(this.getClass().getResource("backViewCharacter0002.png"));
+			backview3 = ImageIO.read(this.getClass().getResource("backViewCharacter0003.png"));
+			leftview0 = ImageIO.read(this.getClass().getResource("leftViewCharacter0000.png"));
+			leftview1 = ImageIO.read(this.getClass().getResource("leftViewCharacter0001.png"));
+			leftview2 = ImageIO.read(this.getClass().getResource("leftViewCharacter0002.png"));
+			leftview3 = ImageIO.read(this.getClass().getResource("leftViewCharacter0003.png"));
+			leftview4 = ImageIO.read(this.getClass().getResource("leftViewCharacter0004.png"));
+			rightview0 = ImageIO.read(this.getClass().getResource("rightViewCharacter0000.png"));
+			rightview1 = ImageIO.read(this.getClass().getResource("rightViewCharacter0001.png"));
+			rightview2 = ImageIO.read(this.getClass().getResource("rightViewCharacter0002.png"));
+			rightview3 = ImageIO.read(this.getClass().getResource("rightViewCharacter0003.png"));
+			rightview4 = ImageIO.read(this.getClass().getResource("rightViewCharacter0004.png"));
+			
+			heart = ImageIO.read(this.getClass().getResource("heart.png"));
+			
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		JukeBox.loop("bgmusic");
-		JukeBox.load("tilechange.wav", "tilechange");
-		JukeBox.load("collect.wav", "collect");
+		
 		level = 0;
 		fps = 20;
 		GamePanel.setFPS(fps);
 		try {
-			bg = ImageIO.read(this.getClass().getResource("icetexture.jpg"));
+			bg = ImageIO.read(this.getClass().getResource("floor.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,11 +221,15 @@ private Player p;
 			for (Point p : phitboxPoints)
 			{
 				
-				if (r.contains(p))
+				if (r.contains(p) && invulnerableTicks == 0)
 				{
-					JukeBox.stop("bgmusic");
-					gsm.setState(GameStateManager.GAMEOVER);
-					
+					lives--;
+					JukeBox.play("hurt");
+					if (lives == 0){
+						JukeBox.stop("bgmusic");
+						gsm.setState(GameStateManager.GAMEOVER);
+					}
+					invulnerableTicks = 14;
 				}
 				
 			}
@@ -190,7 +245,10 @@ private Player p;
 			nextLevel();
 		}
 		
-		
+		if (invulnerableTicks > 0)
+		{
+			invulnerableTicks--;
+		}
 		
 		handleInput();
 		
@@ -257,7 +315,7 @@ private Player p;
 		
 		
 		fps += 10;
-		
+		JukeBox.play("tilechange");
 		gsm.setPaused(true);
 	}
 
@@ -267,30 +325,183 @@ private Player p;
 		
 		g.setColor(Color.BLACK);
 		g.drawImage(bg, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
-		//TODO: PLAYER DRAWING-- NEEDS ANIMATION
-		//TODO
-		//TODO
-		//TODO
-		//TODO
-		g.setColor(Color.ORANGE);
-		g.fill(phitbox);
+		
+		if (lives >= 1)
+		{
+			
+			g.drawImage(heart, 10, 10, 50, 50, null);
+			
+		}
+		if (lives >= 2)
+		{
+			
+			g.drawImage(heart, 65, 10, 50, 50, null);
+			
+		}
+		if (lives == 3)
+		{
+			
+			g.drawImage(heart, 120, 10, 50, 50, null);
+			
+		}
+		
+		
 		g.setColor(Color.YELLOW);
 		
 		for (Rectangle point : coinPoints)
 		{
 			
-			g.fillRect((int) (point.getX()), (int) (point.getY()), GamePanel.WIDTH/64, GamePanel.WIDTH/64);
+			
+			
+			g.drawImage(book, (int) point.getX(), (int) point.getY(), GamePanel.WIDTH/64, GamePanel.HEIGHT/64, null);
+			
 			
 		}
 		
 		for (Rectangle r : obstacles)
 		{
 			
-			g.setColor(Color.RED);
-			g.fill(r);
+			
+				g.drawImage(fire, (int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight(), null);
+			
+			
 			
 		}
 		
+		
+		
+		
+		if (p.getDirection().equals("up"))
+		{
+			
+				if (walktick == 0)
+				{
+					
+					
+						g.drawImage(backview0, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+					
+					walktick++;
+				}
+				else if (walktick == 1)
+				{
+					
+					g.drawImage(backview1, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+					walktick++;
+				}
+				else if (walktick == 2)
+				{
+					
+					g.drawImage(backview2, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+					walktick++;
+				}
+				else if (walktick == 3)
+				{
+					
+					g.drawImage(backview3, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+					walktick = 0;
+				}
+			
+		}
+		
+		
+		if (p.getDirection().equals("down"))
+		{
+			if (walktick == 0)
+			{
+				
+				g.drawImage(frontview0, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 1)
+			{
+				
+				g.drawImage(frontview1, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 2)
+			{
+				
+				g.drawImage(frontview2, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 3)
+			{
+				
+				g.drawImage(frontview3, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick = 0;
+			}
+			
+		}
+		
+		if (p.getDirection().equals("left"))
+		{
+			if (walktick == 0)
+			{
+				
+				g.drawImage(leftview0, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 1)
+			{
+				
+				g.drawImage(leftview1, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 2)
+			{
+				
+				g.drawImage(leftview2, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 3)
+			{
+				
+				g.drawImage(leftview3, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 4)
+			{
+				
+				g.drawImage(leftview4, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick = 0;
+			}
+			
+		}
+		
+		if (p.getDirection().equals("right"))
+		{
+			if (walktick == 0)
+			{
+				
+				g.drawImage(rightview0, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 1)
+			{
+				
+				g.drawImage(rightview1, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 2)
+			{
+				
+				g.drawImage(rightview2, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 3)
+			{
+				
+				g.drawImage(rightview3, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick++;
+			}
+			else if (walktick == 4)
+			{
+				
+				g.drawImage(rightview4, (int) phitbox.getX(),	(int) phitbox.getY(), (int) phitbox.getWidth(), (int) phitbox.getHeight(), null);
+				walktick = 0;
+			}
+			
+		}
 		
 	}
 	
@@ -300,12 +511,13 @@ private Player p;
 		if (Keys.isPressed(Keys.LEFT)){
 			
 			p.rotateLeft();
+			walktick = 0;
 			
 		}
 		if (Keys.isPressed(Keys.RIGHT)){
 
 			p.rotateRight();
-			
+			walktick = 0;
 		}
 		if (Keys.isPressed(Keys.F1))
 		{

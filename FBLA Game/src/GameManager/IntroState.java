@@ -25,8 +25,15 @@ public class IntroState extends GameState {
 	}
 	
 	public void init() {
+		Game.getWindow().setVisible(false);
 		JukeBox.load("mapmove.wav", "mapmove");
-		JukeBox.play("mapmove");
+		JukeBox.load("MenuMusic.mp3", "MenuMusic");
+		JukeBox.load("tilechange.wav", "tilechange");
+		JukeBox.load("collect.wav", "collect");
+		JukeBox.load("bgmusic.mp3", "bgmusic");
+		JukeBox.load("collect.wav", "collect");
+		JukeBox.load("menuoption.wav", "menuoption");
+		JukeBox.load("hurt.mp3", "hurt");
 		ticks = 0;
 		try {
 			logo = ImageIO.read(this.getClass().getResource("AuthorsLogo.png"));
@@ -34,6 +41,8 @@ public class IntroState extends GameState {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		Game.getWindow().setVisible(true);
+		JukeBox.play("mapmove");
 	}
 	
 	public void update() {
@@ -48,12 +57,13 @@ public class IntroState extends GameState {
 			if(alpha > 255) alpha = 255;
 		}
 		if(ticks > FADE_IN + LENGTH + FADE_OUT) {
+			JukeBox.loop("MenuMusic");
 			gsm.setState(GameStateManager.MENU);
 		}
 	}
 	
 	public void draw(Graphics2D g) {
-		g.setColor(Color.WHITE);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		g.drawImage(logo, 0, 0, GamePanel.WIDTH, GamePanel.HEIGHT, null);
 		g.setColor(new Color(0, 0, 0, alpha));
@@ -62,6 +72,7 @@ public class IntroState extends GameState {
 	
 	public void handleInput() {
 		if(Keys.isPressed(Keys.ENTER)) {
+			JukeBox.loop("MenuMusic");
 			gsm.setState(GameStateManager.MENU);
 		}
 	}

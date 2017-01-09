@@ -15,9 +15,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -48,16 +51,17 @@ public class GameOverState extends GameState {
 		{
 			playerName = "Unknown";
 		}
+		File f = new File(System.getProperty("user.home") + "\\Light-Speed\\leaderboard.txt");
+		
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(new File(System.getProperty("user.home") + "\\Light-Speed\\leaderboard.txt")));
+			br = new BufferedReader(new FileReader(f));
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		HashMap<String, Integer> scores = new HashMap<String, Integer>();
-		scores.put(playerName, PlayState.getLevel());
-		System.out.println(scores);
 		String currentLine;
 		try {
 			
@@ -83,51 +87,32 @@ public class GameOverState extends GameState {
 				e.printStackTrace();
 			}
 		}
-		
-		ArrayList<Integer> scoreInts = new ArrayList<Integer>();
-		int previous = -1;
-		int i = 0;
-		
-		for (int score : scores.values())
+		System.out.println(scores);
+		if (scores.containsKey(playerName))
 		{
-			
-			if (score >= previous && i >= 0)
+			if (PlayState.getLevel() >= scores.get(playerName))
 			{
-				scoreInts.add(i, new Integer(score));
-			}else
-			{
-				scoreInts.add(score);
+				scores.remove(playerName);
+				scores.put(playerName, PlayState.getLevel());
 			}
-			previous = score;
-			i++;
-			
+		}else
+		{
+			scores.put(playerName, PlayState.getLevel());
 		}
+		System.out.println(scores.entrySet());
+		
+		
 		
 		StringBuilder sb = new StringBuilder();
-		ArrayList<Integer> newScores = new ArrayList<Integer>();
-		ArrayList<Integer> alreadyhas = new ArrayList<Integer>();
-		for (int it : scoreInts)
+		List<Entry<String, Integer>> list = entriesSortedByValues(scores);
+		for (Entry<String, Integer> s : list)
 		{
 			
-			if (!alreadyhas.contains(it))
-				newScores.add(it);
-			alreadyhas.add(it);
+			sb.append(s.getKey() + ": " + s.getValue() + System.getProperty("line.separator"));
 			
 		}
-		for (int score : newScores)
-		{
-			
-			ArrayList<String> keys = getKeysByValue(scores, score);
-			
-			for (String s : keys)
-			{
-				
-				sb.append(s + ": " + score + System.getProperty("line.separator"));
-				
-			}
-			
-			
-		}
+		
+		
 			BufferedWriter bw = null;
 			try {
 				bw = new BufferedWriter(new FileWriter(new File(System.getProperty("user.home") + "\\Light-Speed\\leaderboard.txt")));
@@ -190,6 +175,25 @@ public class GameOverState extends GameState {
 	    }
 	    return keys;
 	}
+	
+	public static <K,V extends Comparable<? super V>> 
+    List<Entry<K, V>> entriesSortedByValues(HashMap<K,V> map) {
+
+		List<Entry<K,V>> sortedEntries = new ArrayList<Entry<K,V>>(map.entrySet());
+
+		Collections.sort(sortedEntries, 
+				new Comparator<Entry<K,V>>() 
+			{
+				@Override
+				public int compare(Entry<K,V> e1, Entry<K,V> e2) 
+				{
+					return e2.getValue().compareTo(e1.getValue());
+				}
+			}
+				);
+
+return sortedEntries;
+}
 	
 	public void handleInput() {
 		if(Keys.isPressed(Keys.F1) && dataEntered) {

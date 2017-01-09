@@ -42,16 +42,14 @@ public class MenuState extends GameState {
 		
 		GamePanel.resetFPS();
 		try {
-			bg = ImageIO.read(this.getClass().getResource("icetextureblurred.jpg"));
+			bg = ImageIO.read(this.getClass().getResource("menupic.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//TODO: Jukebox load music, initialize background yah
-		JukeBox.load("MenuMusic.mp3", "MenuMusic");
-		JukeBox.loop("MenuMusic");
-		JukeBox.load("collect.wav", "collect");
-		JukeBox.load("menuoption.wav", "menuoption");
+		
+		
+		
 	}
 	
 	public void update() {
@@ -252,7 +250,8 @@ public class MenuState extends GameState {
 			currentOption--;
 		}
 		if(Keys.isPressed(Keys.ENTER) || Keys.isPressed(Keys.SPACE)) {
-			JukeBox.stop("MenuMusic");
+			if (currentOption == 0)
+				JukeBox.stop("MenuMusic");
 			JukeBox.play("collect");
 			selectOption();
 		}

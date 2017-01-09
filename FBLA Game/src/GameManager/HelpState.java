@@ -76,30 +76,30 @@ public class HelpState extends GameState{
 		
 		
 		g.setColor(Color.BLACK);
-		g.drawString("Turn with the arrow keys.", 9*5, 90*5);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 9*5, 105*5);
-		g.drawString("Collecting all coins increases level.", 9*5, 120*5);
+		g.drawString("Turn RELATIVELY the arrow keys.", 9*5, 90*5);
+		g.drawString("Avoid fires and collect books.", 9*5, 105*5);
+		g.drawString("Collecting all books advances level.", 9*5, 120*5);
 		g.drawString("Difficulty raises with level.", 9*5, 135*5);
 		
-		g.drawString("Turn with the arrow keys.", 9*5, 90*5);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 9*5, 105*5);
-		g.drawString("Collecting all coins increases level.", 9*5, 120*5);
+		g.drawString("Turn RELATIVELY the arrow keys.", 9*5, 90*5);
+		g.drawString("Avoid fires and collect books.", 9*5, 105*5);
+		g.drawString("Collecting all books advances level.", 9*5, 120*5);
 		g.drawString("Difficulty raises with level.", 9*5, 135*5);
 		
-		g.drawString("Turn with the arrow keys.", 10*5, 91*5);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10*5, 106*5);
-		g.drawString("Collecting all coins increases level.", 10*5, 121*5);
+		g.drawString("Turn RELATIVELY the arrow keys.", 10*5, 91*5);
+		g.drawString("Avoid fires and collect books.", 10*5, 106*5);
+		g.drawString("Collecting all books advances level.", 10*5, 121*5);
 		g.drawString("Difficulty raises with level.", 10*5, 136*5);
 		
-		g.drawString("Turn with the arrow keys.", 10*5, 89*5);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10*5, 104*5);
-		g.drawString("Collecting all coins increases level.", 10*5, 119*5);
+		g.drawString("Turn RELATIVELY the arrow keys.", 10*5, 89*5);
+		g.drawString("Avoid fires and collect books.", 10*5, 104*5);
+		g.drawString("Collecting all books advances level.", 10*5, 119*5);
 		g.drawString("Difficulty raises with level.", 10*5, 134*5);
 		
 		g.setColor(Color.YELLOW);
-		g.drawString("Turn with the arrow keys.", 10*5, 90*5);
-		g.drawString("Avoid 'spikes' and collect 'coins'.", 10*5, 105*5);
-		g.drawString("Collecting all coins increases level.", 10*5, 120*5);
+		g.drawString("Turn RELATIVELY the arrow keys.", 10*5, 90*5);
+		g.drawString("Avoid fires and collect books.", 10*5, 105*5);
+		g.drawString("Collecting all books advances level.", 10*5, 120*5);
 		g.drawString("Difficulty raises with level.", 10*5, 135*5);
 		
 		
